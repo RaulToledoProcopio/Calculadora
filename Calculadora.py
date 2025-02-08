@@ -9,16 +9,25 @@ class Calculadora(QMainWindow):
         uic.loadUi('untitled.ui', self)
 
         self.pantalla_label = self.findChild(QLabel, "Pantalla")
-        self.log_tableWidget = self.findChild(QTableWidget, "log")  # Ahora correctamente identificado como QTableWidget
+        self.log_tableWidget = self.findChild(QTableWidget, "log")
 
-        # Configurar tabla de historial
+        # Configuramos tabla de historial
         self.log_tableWidget.setColumnCount(2)
         self.log_tableWidget.setHorizontalHeaderLabels(["Operación", "Resultado"])
         self.log_tableWidget.setRowCount(0)
 
         # Conexiones de los botones
-        for i in range(10):
-            self.findChild(QPushButton, f"button{i}").clicked.connect(lambda _, n=i: self.add_number(str(n)))
+
+        self.findChild(QPushButton, "button0").clicked.connect(lambda: self.add_number("0"))
+        self.findChild(QPushButton, "button1").clicked.connect(lambda: self.add_number("1"))
+        self.findChild(QPushButton, "button2").clicked.connect(lambda: self.add_number("2"))
+        self.findChild(QPushButton, "button3").clicked.connect(lambda: self.add_number("3"))
+        self.findChild(QPushButton, "button4").clicked.connect(lambda: self.add_number("4"))
+        self.findChild(QPushButton, "button5").clicked.connect(lambda: self.add_number("5"))
+        self.findChild(QPushButton, "button6").clicked.connect(lambda: self.add_number("6"))
+        self.findChild(QPushButton, "button7").clicked.connect(lambda: self.add_number("7"))
+        self.findChild(QPushButton, "button8").clicked.connect(lambda: self.add_number("8"))
+        self.findChild(QPushButton, "button9").clicked.connect(lambda: self.add_number("9"))
 
         self.findChild(QPushButton, "buttonP1").clicked.connect(lambda: self.add_number("("))
         self.findChild(QPushButton, "buttonP2").clicked.connect(lambda: self.add_number(")"))
@@ -108,7 +117,6 @@ class Calculadora(QMainWindow):
             self.pantalla_label.setText("Error")
 
     def add_to_log(self, operation, result):
-        """ Agrega la operación y su resultado al log (QTableWidget). """
         row_count = self.log_tableWidget.rowCount()
         self.log_tableWidget.insertRow(row_count)
         self.log_tableWidget.setItem(row_count, 0, QTableWidgetItem(operation))
