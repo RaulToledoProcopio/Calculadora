@@ -801,7 +801,7 @@ QPushButton#buttonON:hover {
 </string>
     </property>
     <property name="text">
-     <string>ON</string>
+     <string>ON/OFF</string>
     </property>
    </widget>
    <widget class="QPushButton" name="buttonP1">
